@@ -1,0 +1,79 @@
+﻿<div class="row justify-content-center">
+    <div class="col-8 col-md-6">
+        <form name="editForm" ng-submit="update(editForm.$valid)">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input ng-required="true" ng-model="usuario.NombreUsuario" name="nombreInput" id="nombreInput" class="form-control"
+                           placeholder="Nombre de Usuario" type="text" ng-minlength="7" autocomplete="name" />
+                </div>
+                <small ng-show="editForm.nombreInput.$error.required" class="form-text text-danger">Falta el nombre de usuario</small>
+                <small ng-show="editForm.nombreInput.$error.minlength" class="form-text text-danger">El nombre de usuario debe tener al menos 7 caracteres</small>
+            </div> <!-- end form-group-->
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input ng-model="usuario.Contrasena" ng-required="true" placeholder="Nueva Contraseña" name="inputContrasena" id="inputContrasena"
+                           class="form-control" type="password" ng-minlength="10" autocomplete="new-password"
+                           ng-pattern="/(?=.*?[0-9])(?=.*?[a-z])(?=.*[^0-9A-Za-z])(?=.*?[A-Z]).+/" ng-change="changeText(editForm)" />
+                </div>
+                <small ng-show="editForm.inputContrasena.$error.required" class="form-text text-danger">Falta la contraseña</small>
+                <small ng-show="editForm.inputContrasena.$error.minlength" class="form-text text-danger">La contraseña debe tener al menos 10 caracteres</small>
+                <small ng-show="editForm.inputContrasena.$error.pattern" class="form-text text-danger">La contraseña debe tener al menos 1 numero, 1 letra mayuscula, 1 letra minuscula y 1 caracter especial</small>
+            </div> <!-- end form-group-->
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input ng-model="usuario.ContrasenaRepetida" ng-required="true" class="form-control"
+                           placeholder="Vuelva a escribir la contraseña" id="contrasenaRepetida" name="contrasenaRepetida"
+                           type="password" autocomplete="new-password" ng-change="changeText(editForm)" />
+                </div>
+                <small ng-show="editForm.contrasenaRepetida.$error.required" class="form-text text-danger">Repita la contraseña</small>
+                <small ng-show="editForm.contrasenaRepetida.$error.mismaContrasena" class="form-text text-danger">Las contraseñas deben ser iguales</small>
+            </div> <!-- end form-group-->
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-venus-mars"></i> </span>
+                    </div>
+                    <select class="custom-select" ng-required="true" ng-model="usuario.Sexo" id="inputSexo" name="inputSexo">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </div>
+                <small ng-show="editForm.inputSexo.$error.required" class="form-text text-danger">Seleccione un sexo</small>
+            </div> <!-- end form-group-->
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input ng-model="usuario.Email" id="inputEmail" placeholder="Email" ng-required="true"
+                           class="form-control" type="email" autocomplete="username email" name="inputEmail"
+                           ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
+                </div>
+                <small ng-show="editForm.inputEmail.$error.required" class="form-text text-danger">Falta un email</small>
+                <small ng-show="editForm.inputEmail.$error.pattern" class="form-text text-danger">El email no tiene un formato valido</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" ng-disabled="doUpdate || !editForm.$valid" class="btn btn-primary btn-block">Actualizar</button>
+            </div> <!-- form-group// -->
+        </form>
+        <p ng-show="errorSistema" class="text-danger">Ha ocurrido un error en el sistema, contacte al administrador</p>
+        <p ng-show="doUpdate" class="text-info">Actualizando, por favor espere...</p>
+        <p class="text-danger" ng-repeat="error in errores">
+            {{error}}
+        </p>
+    </div>
+</div>

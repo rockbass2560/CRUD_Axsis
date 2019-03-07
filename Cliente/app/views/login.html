@@ -1,0 +1,43 @@
+﻿<div class="row justify-content-center">
+    <div class="col-6 card">
+        <article class="card-body">
+            <h4 class="card-title text-center mb-4 mt-1">Login</h4>
+            <hr>
+            <p ng-show="doLogin" class="text-info">Realizando el login, espere por favor...</p>
+            <form name="loginForm" ng-submit="login(loginForm)">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input ng-model="usuario.nombreUsuario" name="campoNombreUsuario"
+                               class="form-control" autocomplete="username" placeholder="Nombre de Usuario" type="text"
+                               ng-required="true">
+                    </div> <!-- input-group.// -->
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input ng-model="usuario.contrasena" name="campoContrasena"
+                               class="form-control"
+                               placeholder="******" autocomplete="current-password" type="password"
+                               ng-required="true">
+                    </div> <!-- input-group.// -->
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" ng-disabled="doLogin" class="btn btn-primary btn-block">Login</button>
+                </div> <!-- form-group// -->
+            </form>
+            <div class="col-auto text-center">
+                <button class="btn btn-secondary" ng-disabled="doLogin" ng-click="goRegistro()">Registrarse</button>
+            </div>
+            <p></p>
+            <p ng-show="noAutorizado" class="text-danger text-center">Usuario o contraseña incorrecto</p>
+            <p ng-show="errorSistema" class="text-danger text-center">Ha ocurrido un error en el sistema, contacte al administrador</p>
+            <p ng-show="loginForm.campoNombreUsuario.$error.required" class="text-danger text-center">El nombre de usuario es requerido</p>
+            <p ng-show="loginForm.campoContrasena.$error.required" class="text-danger text-center">La contraseña es requerida</p>
+        </article>
+    </div>
+</div>

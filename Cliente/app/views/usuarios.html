@@ -1,0 +1,50 @@
+﻿<div class="alert alert-danger hide">
+    Ocurrió un error en servidor y no se deshabilitó el elemento
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <button class="btn btn-primary" ng-click="goRegister()">Registrar usuario nuevo</button>
+        <br /><br />
+        <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+            <tr class="text-center text-justify align-middle" ng-repeat="row in $data track by row.ID">
+                <td title="'ID'" sortable="'ID'">{{row.ID}}</td>
+                <td title="'Nombre de Usuario'" sortable="'NombreUsuario'" >{{row.NombreUsuario}}</td>
+                <td title="'Email'" sortable="'Email'">{{row.Email}}</td>
+                <td title="'Sexo'" sortable="'Sexo'">{{row.Sexo}}</td>
+                <td title="'Estatus'" sortable="'Estatus'">{{row.Estatus === true ? 'Activo' : 'Inactivo'}}</td>
+                <td title="'Acciones'">
+                    <div class="align-middle">
+                        <button type="button" class="btn btn-default btn-outline-primary" ng-click="editar(row)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-outline-primary" data-toggle="modal"
+                                data-target="#modalConfirmacion" ng-click="setIdDeshabilitar(row)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="modal" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación de deshabilitación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Esta seguro de deshabilitar al usuario?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-disabled="onDelete" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" ng-disabled="onDelete" class="btn btn-primary" ng-click="deshabilitar()">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

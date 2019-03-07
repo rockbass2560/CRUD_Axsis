@@ -1,0 +1,1 @@
+CRUD de manejo de usuarios utilizando tecnologias .NET con C#, Entity Framework, Bootstrap, AngularJS y jQuery. Este proyecto se realizó como parte del proceso de selección de Axsis.
